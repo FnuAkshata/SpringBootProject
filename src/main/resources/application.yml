@@ -1,0 +1,64 @@
+
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: qa
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    password: GreatCool@9012
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message: '"Welcome to daily coe buffer!"'
+
+---
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username:
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    password: 
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message: '"Welcome to daily coe buffer!"'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    password: GreatCool@9012
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message: '"Welcome to daily coe buffer!"'
